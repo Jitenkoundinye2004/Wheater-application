@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Weather App Using OpenWeatherMap API</title>
+
+  <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  
+  <!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <link rel="stylesheet" href="styles/style.css">
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+
+  <style>
+    body {
+
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size:cover;
+          background-repeat: no-repeat !important;
+          background-size: cover !important;
+          background-image:url(media/day1.jpg);
+          background-attachment: fixed;
+          height: 100vh;
+          margin: 0;
+}
+#map-container {
+    position: relative;
+    z-index: 1; 
+    margin: 20px;
+}
+
+  </style>
+</head>
+
+<body>
+  <ul class="navbar">
+    <li style="float: left; margin-left: -10px;" class="forecast">
+      <a>⛄ Forecast</a></li>
+    <li><a href="#" id="reloadButton" >⟳</a></li>
+    <div class="search-container">
+    <input type="text" class="search-city" id="searchCity" type="text" autocomplete="off"
+        placeholder="🔍︎ Search City" >
+        <i class="fas fa-microphone" id="voice-button"></i>
+      </div>
+      <li><a href="signup.html">SignUp/SignIn</a></li>
+  </ul>
+
+
+  <h1 class="location-name" id="locationName">Search City...</h1>
+
+  <div class="temperature-container">
+    <div class="temperature-icon"><img class="imgs-as-icons" src="icons/sunny.png"></div>
+    <div class="temperature-value" id="temperatureValue"></div>
+  </div>
+
+  <h2 class="weather-type" id="weatherType"></h2>
+
+  <div class="additionals-first-row">
+    <span class="air-quality-additional">
+      <span class="air-quality-additional-label">Air Quality Index </span>
+      <span class="air-quality-index-additional-value">Moderate</span>
+    </span>
+
+    <span class="real-feel-additional">
+      <span class="real-feel-additional-label">Real Feel </span>
+      <span class="real-feel-additional-value" id="realFeelAdditionalValue">-</span>
+    </span>
+
+    <span class="humidity-additional">
+      <span class="humidity-additional-label">Humidity </span>
+      <span class="humidity-additional-value" id="humidityAdditionalValue">-</span>
+    </span>
+
+    <span class="max-temperature-additional">
+      <span class="max-temperature-additional-label">Highest Temperature </span>
+      <span class="max-temperature-additional-value" id="maxTemperatureAdditionalValue">-</span>
+    </span>
+
+    <span class="min-temperature-additional">
+      <span class="min-temperature-additional-label">Lowest Temperature </span>
+      <span class="min-temperature-additional-value" id="minTemperatureAdditionalValue">-</span>
+    </span>
+  </div>
+
+  <div class="additionals-second-row">
+    <span class="wind-speed-additional">
+      <span class="wind-speed-additional-label">Wind Speed </span>
+      <span class="wind-speed-additional-value" id="windSpeedAdditionalValue">-</span>
+    </span>
+
+    <span class="wind-direction-additional">
+      <span class="wind-direction-additional-label">Wind Direction </span>
+      <span class="wind-direction-additional-value" id="windDirectionAdditionalValue">-</span>
+    </span>
+
+    <span class="visibility-additional">
+      <span class="visibility-additional-label">Visibility </span>
+      <span class="visibility-additional-value" id="visibilityAdditionalValue">-</span>
+    </span>
+
+    <span class="pressure-additional">
+      <span class="pressure-additional-label">Pressure </span>
+      <span class="pressure-additional-value" id="pressureAdditionalValue">-</span>
+    </span>
+
+    <span class="sunrise-additional">
+      <span class="sunrise-additional-label">Sunrise </span>
+      <span class="sunrise-additional-value" id="sunriseAdditionalValue">-</span>
+    </span>
+
+    <span class="sunset-additional">
+      <span class="sunset-additional-label">Sunset </span>
+      <span class="sunset-additional-value" id="sunsetAdditionalValue">-</span>
+    </span>
+  </div>
+
+  <br>
+  <div class="daily-forecast">
+
+    <h2 class="daily-forecast-label">Daily</h2>
+
+    <div id="forecast-container" class="forecast-container">
+    </div>
+  </div>
+
+
+  <div id="map-container">
+    <div id="map"></div>
+</div>
+  <script>
+
+     var isLoggedIn = false;
+
+function alertLogin() {
+    alert("Please first log in."); 
+}
+
+// Attach click event to components
+function attachClickEvents() {
+    document.querySelectorAll(' #reloadButton, .search-city, #voice-button, .signup-link, #map-container').forEach(function(element) {
+        element.onclick = function(event) {
+            if (!isLoggedIn) {
+                event.preventDefault(); // Prevent default action
+                alertLogin(); // Show alert
+            }
+        };
+    });
+}
+
+function attachSearchEvent() {
+  var searchInput = document.getElementById('searchCity');
+  searchInput.addEventListener('keydown', function(event) {
+      if (!isLoggedIn) {
+          event.preventDefault(); // Prevent the default action
+          alertLogin(); // Show alert for any key press
+      }
+  });
+}
+// Initial setup
+attachClickEvents();
+attachSearchEvent();
+
+var map = L.map('map').setView([20.5937, 78.9629], 5); // Default location (London)
+
+// Add OpenStreetMap tiles
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap'
+}).addTo(map);
+  </script>
+</body>
+
+</html>

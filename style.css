@@ -1,0 +1,458 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  opacity: 100%;
+  /* transition: 0.25s; */
+}
+
+.mobile-navbar {
+  display: none;
+}
+
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+}
+
+#loader1,
+#loader2,
+#loader3 {
+  width: 37.5px;
+  height: 37.5px;
+}
+
+.imgs-as-icons {
+  width: 50px;
+  height: 50px;
+}
+
+.navbar {
+  /* background: #212a51; */
+  background: rgba(0, 0, 0, 0.375);
+  text-align: right;
+  opacity: 100%;
+  transition: 0.3s;
+}
+
+/* START OF MOBILE STYLES */
+
+.mobile-navbar {
+  list-style-type: none;
+  /* background: rgba(0, 0, 0, 1.0); */
+  opacity: 100%;
+  transition: 0.3s;
+}
+
+.mobile-navbar li {
+  margin: 7.5px auto;
+  width: 87.5%;
+}
+
+.mobile-navbar li input {
+  height: 50px;
+  width: 100%;
+  background: #1d1d1f;
+  color: #fff;
+  text-align: center;
+  border: none;
+  border-radius: 50px;
+  outline: none;
+  font-size: 20px;
+}
+
+.mobile-navbar input::placeholder {
+  color: lightgrey;
+}
+
+/* END OF MOBILE STYLES */
+
+ul {
+  margin: 0;
+  padding: 5px;
+  transition: 0.3s;
+}
+
+.voice-icon{
+  background-size: none;
+  width: 50px;
+  height: auto;
+}
+
+.navbar li {
+  margin: 0 0;
+  padding: 5px;
+  display: inline-block;
+  transition: 0.3s;
+}
+
+.navbar li a {
+  font-size: 25px;
+  color: #fff;
+  padding: 5px 10px;
+  text-decoration: none;
+  transition: 0.3s;
+  border-radius: 5px;
+}
+
+.navbar .search-city {
+  width: 25vw;
+  height: 5.75vh;
+  font-size: 18.75px;
+}
+
+.search-city {
+  letter-spacing: 0.50px;
+  padding-left: 20px;
+  background: rgba(0, 0, 0, 0.50);
+  border: none;
+  color: white;
+  border-radius: 50px;
+  outline: none;
+  padding-right: 30px;
+}
+.search-container {
+    position: relative;
+    display: inline-block;
+}
+#voice-button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: white;
+}
+
+
+
+.location-name {
+  font-weight: 400;
+  text-align: center;
+  color: #fff;
+}
+
+.temperature-container {
+  text-align: center;
+  margin: auto;
+  font-size: 50px;
+}
+
+.temperature-icon {
+  margin-bottom: -15px;
+  padding: 0;
+}
+
+.temperature-value {
+  margin-top: -15px;
+  padding: 0;
+  color: #fff;
+}
+
+.weather-type {
+  font-weight: 400;
+  text-align: center;
+  color: #fff;
+}
+
+.additionals-first-row,
+.additionals-second-row {
+  font-size: 12.5px;
+  width: 100%;
+  text-align: center;
+}
+
+.additionals-first-row {
+  margin-bottom: 12.5px;
+}
+
+.additionals-second-row {
+  margin-top: 12.5px;
+}
+
+.air-quality-additional,
+.real-feel-additional,
+.humidity-additional,
+.max-temperature-additional,
+.min-temperature-additional {
+  margin-left: 5px;
+  margin-right: 5px;
+  background: #fff;
+  border-radius: 50px;
+  padding: 2.5px 10px;
+}
+
+.wind-speed-additional,
+.wind-direction-additional,
+.visibility-additional,
+.pressure-additional,
+.sunrise-additional,
+.sunset-additional {
+  margin-left: 5px;
+  margin-right: 5px;
+  background: #fff;
+  border-radius: 50px;
+  padding: 2.5px 10px;
+}
+
+.separator {
+  width: 25%;
+  margin: auto;
+  height: 7.5px;
+  background: lightgrey;
+  border-radius: 50px;
+}
+
+.daily-forecast {
+  padding: 25px;
+  margin-top: -25px;
+  text-align: center;
+}
+
+.daily-forecast .daily-forecast-label {
+  color: #fff;
+}
+
+
+.daily-forecast-card {
+  display: inline-block;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0);
+  width: 125px;
+  height: 162.5px;
+  padding: 2.5px 10px;
+  margin-left: 2.5px;
+  margin-right: 2.5px;
+  color: #fff;
+}
+
+.daily-forecast-card .daily-forecast-logo {
+  font-size: 37.5px;
+  margin: -10px -10px;
+}
+
+.daily-forecast-card .daily-forecast-date {
+  font-size: 17.5px;
+  margin-top: 12.5px;
+  font-weight: 400;
+}
+
+.daily-forecast-card .daily-forecast-logo {
+  margin-top: -15px;
+  margin-bottom: 2.5px;
+}
+
+.daily-forecast-card .weather-type-daily-forecast {
+  font-weight: normal;
+  margin-top: 2.5px;
+}
+
+.max-daily-forecast {
+  font-weight: bold;
+  font-size: 25px;
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    display: none;
+  }
+
+  .mobile-navbar {
+    display: block;
+
+  }
+
+  .additionals-first-row,
+  .additionals-second-row {
+    line-height: 27.5px;
+    margin: 0;
+  }
+
+  .additionals-first-row span,
+  .additionals-second-row span {
+    display: none;
+  }
+
+  .daily-forecast-card {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .daily-forecast .daily-forecast-label {
+    background: lightgrey;
+    color: #252525;
+    padding: 10px;
+    width: 75%;
+    border-radius: 50px;
+    margin: auto;
+  }
+
+  #weatherType {
+    margin-top: 0;
+  }
+}
+
+.daily-forecast-card {
+  display: inline-block;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0);
+  width: 125px;
+  height: 162.5px;
+  padding: 2.5px 10px;
+  margin-left: 2.5px;
+  margin-right: 2.5px;
+  color: #fff;
+}
+
+.daily-forecast-card .daily-forecast-logo {
+  font-size: 37.5px;
+  margin: -10px -10px;
+}
+
+.daily-forecast-card .daily-forecast-date {
+  font-size: 17.5px;
+  margin-top: 12.5px;
+  font-weight: 400;
+}
+
+.daily-forecast-card .daily-forecast-logo {
+  margin-top: -15px;
+}
+
+.daily-forecast-card .weather-type-daily-forecast {
+  font-weight: normal;
+  margin-top: 2.5px;
+}
+
+.max-min-temperature-daily-forecast {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.max-daily-forecast {
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.min-daily-forecast {
+  font-size: 15px;
+  opacity: 0.7;
+}
+
+#map-container {
+  margin-left: 100px;
+  margin-right: 100px;
+  border: 2px solid #000; /* Black border, adjust thickness and color as needed */
+  padding: 10px; /* Optional: Add some padding inside the border */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Optional: Add shadow for better visibility */
+}
+
+#map {
+  height: 400px; /* Set a height for the map */
+  width: 100%; /* Make the map take the full width of the container */
+}
+.forecast-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 5px;
+  text-align: center;
+}
+
+/*
+.search-history {
+  margin-top: 20px;
+  text-align: center;
+  color: #fff;
+}
+
+#searchHistoryList {
+  list-style-type: none;
+  padding: 0;
+}
+
+#searchHistoryList li {
+  cursor: pointer;
+  margin: 5px 0;
+  padding: 5px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+#searchHistoryList li:hover {
+  background: rgba(255, 255, 255, 0.4);
+}*/
+
+
+.profile {
+  display: flex; /* Use flexbox for the profile section */
+  align-items: center; /* Align items vertically centered */
+  margin-left: 10px;
+  cursor: pointer; /* Add some space between the search bar and profile */
+}
+
+.profile img {
+  width: 30px; /* Set width for the profile image */
+  height: 30px; /* Set height for the profile image */
+  border-radius: 50%; /* Make the image circular */
+}
+
+
+/* .profile-menu {
+          position: absolute;
+          top: 40px;
+          right: 0;
+          background-color: #3c4043;
+          color: #ffffff;
+          padding: 10px;
+          border-radius: 4px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+          display: none;
+      }
+      .profile:hover .profile-menu {
+          display: block;
+      }
+      .profile-menu p {
+          margin: 0;
+          font-size: 14px;
+      }
+      .profile-menu p:first-child {
+          font-weight: bold;
+          margin-bottom: 5px;
+      } */
+      .profile-info {
+          position: absolute;
+          top: 80px;
+          right: 0;
+          background-color: #ffffff;
+          color: #000000;
+          padding: 10px;
+          border-radius: 4px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+          display: none;
+      }
+      .profile-info p {
+          margin: 0;
+          font-size: 14px;
+      }
+      .profile-info p:first-child {
+          font-weight: bold;
+          margin-bottom: 5px;
+      }
+      .profile-info button {
+          margin-top: 10px;
+          padding: 5px 10px;
+          background-color: #4285f4;
+          color: #ffffff;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+      }
+      .profile-info button:hover {
+          background-color: #357ae8;
+      }
+ 
